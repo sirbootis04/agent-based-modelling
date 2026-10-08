@@ -94,12 +94,19 @@ void SchellingModel::doPerTick(){
 
 	//print avg satisfaction
 	double currentTick = repast::RepastProcess::instance()->getScheduleRunner().currentTick();
+
+
 	if(repast::RepastProcess::instance()->rank() == 0) {
 		printf("Tick: %.1f\tAvg satisfied: %.2f\n", currentTick, avgSatisfied);
-	}
+	
 
-	if (currentTick==1 || currentTick==stopAt) //print at the beginning and the end of the simulation
-			printToScreen();
+		if (currentTick==1 || currentTick==stopAt || avgSatisfied==1)//print at the beginning and the end of the simulation
+				printToScreen();
+
+		if (avgSatisfied==1)
+
+			repast::RepastProcess::instance()->getScheduleRunner().stop();
+	}
 
 
 	//agents move to a random location if unsatisfied
