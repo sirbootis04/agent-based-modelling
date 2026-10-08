@@ -1,0 +1,5 @@
+#Properties file
+stop.at = 200
+board.size = 50
+count.of.agents = 1900
+threshold = 0.7
